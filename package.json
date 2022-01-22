@@ -1,0 +1,42 @@
+{
+  "name": "recipe-api",
+  "version": "1.0.0",
+  "description": "A simple recipe API backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "_dev": "npx ts-node-dev --respawn --pretty --transpile-only source/server.ts",
+    "dev": "npx ts-node-dev --respawn --pretty --transpile-only source/server.ts",
+    "build": "rm -rf build/ && tsc --outDir build/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morgaesis/recipe-api.git"
+  },
+  "author": "Mörgæsis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/morgaesis/recipe-api/issues"
+  },
+  "homepage": "https://github.com/morgaesis/recipe-api#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.10",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
+    "@types/helmet": "^4.0.0",
+    "axios": "^0.25.0",
+    "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "helmet": "^5.0.1",
+    "mongodb": "^4.3.1",
+    "mongoose": "^6.1.7",
+    "ts-node": "^10.4.0"
+  }
+}
