@@ -4,17 +4,25 @@ A backend API for recipe creation, fetching, and modification
 Set your preferred port in `.env` along with username and password to your MongoDB database.
 
 ## Features
-Features not yet implemented are marked as unfinished. Some type annotations are missing for MongoDB return values. Documentation on their exact type was lacking. No tests are present, but a fake test is in the GitHub workflow, where the implemented tests would be performed. Searching will come at another time, once I've read more on the MongoDB query syntax.
+Implemented features are marked with `x`, the rest is TBD. With only limited time, the missing features will not be complete before the next code review.
 
 - [x] CRUD API for recipes
 - [x] OpenAPI at root of API
 - [x] Enable Docker build (Containerfile)
 - [x] CI build
-- [ ] CI test
+- [x] CI test (simulated)
 - [ ] CI publish
 - [ ] Test API
 - [ ] Recipe search
 - [ ] All variables type annotated
+
+### Known limitations
+These are currently knows limitations, which should be fixed before actual use.
+
+- [ ] No search: I need to read more on MongoDB query syntax.
+- [ ] No tests: I need to read up on testing frameworks in TypeScript; a fake test is part of the GitHub CI Workflow.
+- [ ] All DB entries have same ID: No apparent reason; requires further debugging.
+- [ ] MongoDB type annotations: Some variables from the MongoDB library are not type-annotated, since the exact return type on the MongoDB official documentation is missing/wrong.
 
 ### API
 
@@ -29,6 +37,7 @@ Features not yet implemented are marked as unfinished. Some type annotations are
 The following needs to be defined in your `.env`:
 - `PORT`: The port the API listens to, e.g. 8080
 - `DB_CONN_STRING`: Database URL -> `mongodb://<database-username>:<database-password>@127.0.0.1`
+- `RECIPES_COLLECTION_NAME`: Name of the recipe collection, e.g. `my-recipes`
 
 ### Development
 Ensure you have `npm` installed, then run:
