@@ -19,14 +19,14 @@ Implemented features are marked done, the rest is TBD. With only limited time, t
 ### Known limitations
 These are currently knows limitations, which should be fixed before actual use.
 
-- [ ] No search: I need to read more on MongoDB query syntax.
 - [ ] No tests: I need to read up on testing frameworks in TypeScript; a fake test is part of the GitHub CI Workflow.
 - [ ] Searching: Only works if database has been set up with text indices for all fields, except `_id`
 
 ### API
 
 - `GET /`: OpenAPI description of the API
-- `GET /recipe`: Fetch all recipes
+- `GET /recipes`: Fetch all recipes
+- `GET /recipes?text={term}`: Fetch recipes containing `term`
 - `POST /recipe`: Create a new recipe
 - `GET /recipe/{id}`: Fetch recipe with given id
 - `PUT /recipe/{id}`: Update recipe with given id
