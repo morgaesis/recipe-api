@@ -15,8 +15,10 @@ RUN curl -LO https://repo.mongodb.org/yum/redhat/8Server/mongodb-org/5.0/x86_64/
 	&& dnf clean all
 
 # Environment setup
-COPY ["package.json", "tsconfig.json", "source/", ".env", "/data/"]
+COPY ["package.json", "tsconfig.json", "/source", "/data/"]
 RUN npm install && npx tsc
+# Copy runtime code
+COPY ["build/", ".env", "/data/"]
 
 # Command to run
 CMD node ./build/server.js
