@@ -26,13 +26,18 @@ Features not yet implemented are marked as unfinished. Some type annotations are
 - `DELETE /recipe/{id}`: Delete recipe with given id
 
 ## Building/running
+The following needs to be defined in your `.env`:
+- `PORT`: The port the API listens to, e.g. 8080
+- `DB_CONN_STRING`: Database URL -> `mongodb://<database-username>:<database-password>@127.0.0.1`
+
+### Development
 Ensure you have `npm` installed, then run:
 ```shell
 npm run dev
 ```
 Now you can develop, and the API server should restart automatically.
 
-## Production
+### Production
 With `npm`:
 ```shell
 npm run build
