@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build typescript
-      uses: actions/setup-node
+      uses: actions/setup-node@v2
       with:
         node-version: 16.x
     - name: Install npm packages
