@@ -4,7 +4,7 @@ A backend API for recipe creation, fetching, and modification
 Set your preferred port in `.env` along with username and password to your MongoDB database.
 
 ## Features
-Implemented features are marked with `x`, the rest is TBD. With only limited time, the missing features will not be complete before the next code review.
+Implemented features are marked done, the rest is TBD. With only limited time, the missing features will not be complete before the next code review.
 
 - [x] CRUD API for recipes
 - [x] OpenAPI at root of API
@@ -13,16 +13,15 @@ Implemented features are marked with `x`, the rest is TBD. With only limited tim
 - [x] CI test (simulated)
 - [ ] CI publish
 - [ ] Test API
-- [ ] Recipe search
-- [ ] All variables type annotated
+- [x] Recipe search
+- [x] All variables type annotated
 
 ### Known limitations
 These are currently knows limitations, which should be fixed before actual use.
 
 - [ ] No search: I need to read more on MongoDB query syntax.
 - [ ] No tests: I need to read up on testing frameworks in TypeScript; a fake test is part of the GitHub CI Workflow.
-- [ ] All DB entries have same ID: No apparent reason; requires further debugging.
-- [ ] MongoDB type annotations: Some variables from the MongoDB library are not type-annotated, since the exact return type on the MongoDB official documentation is missing/wrong.
+- [ ] Searching: Only works if database has been set up with text indices for all fields, except `_id`
 
 ### API
 

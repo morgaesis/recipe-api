@@ -1,6 +1,15 @@
-import express from 'express';
+import { Router } from 'express';
 import controller from '../controllers/recipe';
-const router = express.Router();
+const router: Router = Router();
+
+const recipeJSON: object = {
+	_id: { type: "mongoDB.ObjecId" },
+	title: { type: "String" },
+	description: { type: "String" },
+	time: { type: "String" },
+	steps: { type: "String[]" },
+	userId: { type: "Number" },
+};
 
 // OpenAPI root
 router.get('/', (req,res,next) => {
@@ -25,37 +34,41 @@ router.get('/', (req,res,next) => {
 		paths: {
 			"/recipe": {
 				get: {
-					description: "Get all recipes",
-					parameters: [],
+					description: "Search for recipes containing search string",
+					parameters: [
+						{
+							name: "search term",
+							description: "Search for recipes containing the search term",
+							in: "query",
+							required: true,
+							allowEmptyValue: false,
+						},
+					],
 					responses: {
 						200: {
-							description: "Successfully fetched all recipes",
+							description: "Successfully found entries containing search string",
 							content: {
 								"application/json": {
 									schema: {
 										type: "object",
-										properties: [{
-											_id: {
-												type: "mongoDB.ObjecId",
-											},
-											title: {
-												type: "String",
-											},
-											description: {
-												type: "String",
-											},
-											time: {
-												type: "String",
-											},
-											steps: {
-												type: "String[]",
-											},
-											userId: {
-												type: "Number",
-											},
-										}],
+										properties: [recipeJSON],
 									},
 								}
+							},
+						},
+						404: {
+							description: "No entries found",
+							content: {
+								"application/json": {
+									schema: {
+										type: "object",
+										properties: {
+											message: {
+												type: "String",
+											},
+										},
+									},
+								},
 							},
 						},
 						500: {
@@ -148,6 +161,40 @@ router.get('/', (req,res,next) => {
 					},
 				},
 			},
+			"/recipes": {
+				get: {
+					description: "Get all recipes",
+					parameters: [],
+					responses: {
+						200: {
+							description: "Successfully fetched all recipes",
+							content: {
+								"application/json": {
+									schema: {
+										type: "object",
+										properties: [recipeJSON],
+									},
+								}
+							},
+						},
+						500: {
+							description: "Error getting DB",
+							content: {
+								"application/json": {
+									schema: {
+										type: "object",
+										properties: {
+											message: {
+												type: "String",
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"/recipe/{id}": {
 				get: {
 					description: "Fetch the recipe with the given id",
@@ -167,26 +214,7 @@ router.get('/', (req,res,next) => {
 								"application/json": {
 									schema: {
 										type: "object",
-										properties: {
-											_id: {
-												type: "mongoDB.ObjecId",
-											},
-											title: {
-												type: "String",
-											},
-											description: {
-												type: "String",
-											},
-											time: {
-												type: "String",
-											},
-											steps: {
-												type: "String[]",
-											},
-											userId: {
-												type: "Number",
-											},
-										},
+										properties: recipeJSON,
 									},
 								}
 							},
@@ -380,7 +408,8 @@ router.get('/', (req,res,next) => {
 		},
 	});
 });
-router.get('/recipe', controller.getRecipes);
+router.get('/recipes', controller.getRecipes);
+router.get('/recipe', controller.getRecipeText);
 router.get('/recipe/:id', controller.getRecipe);
 router.put('/recipe/:id', controller.updateRecipe);
 router.delete('/recipe/:id', controller.deleteRecipe);
